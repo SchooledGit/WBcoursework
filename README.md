@@ -1,3 +1,5 @@
 # WBcoursework
-don't delete my coursework
-that means you steven
+Start date: 13/11/2018
+End date: n/a
+
+Version: 1.0
