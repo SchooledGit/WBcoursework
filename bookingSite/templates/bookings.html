@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
+		<title>The Society</title>
+		<style>
+		@import "compass/css3";
+		.flex-container{position:fixed;top:0;left:0;right:0;height:50px;display:flex;align-items:center;width:100%;justify-content:space-between; background:deepskyblue;}
+		.links{padding:30px;}
+		.thing{padding:30px;}
+		body{margin-top:50px;}
+		.inputs{text-align:center;margin:0 auto;width: 40%; clear:both;}
+		.inputs input{width:100%;clear:both;}
+		</style>
+		
+	</head>
+	<body>
+		<header>
+		
+		<div class = "flex-container">
+			<h4 class = "thing">Book the Property</h4>
+			<div class = "links">
+				<a href="/reviews">Home</a>
+				<a href="/rentals">Back</a>
+			</div>
+		</div>
+		</header>
+		<div class = "inputs">
+		<form action = "addBooking" method = "post"></br>
+            Start Date <input type = "date" data-date = "" data-date-format = "DD MM YYYY" name = "sdate"> </br>
+			End Date <input type = "date" name = "edate"> </br>
+            Name <input type = "text" name = "name"> </br>
+			Email <input type = "text" name = "email"> </br> </br>
+			<input type = "submit" value = "Submit"/></br>
+        </form>
+		</div>
+		
+		</body>
+
+</html>
