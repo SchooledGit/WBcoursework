@@ -21,7 +21,6 @@ def reviews():
 @app.route('/rentals')
 def rentals():
 	inList = readWithoutColumnsFile('static\\rentals.csv',[0,1,4])
-	print (inList)
 	return render_template('rentals.html', inList = inList)
 
 @app.route('/bookings')
@@ -92,8 +91,8 @@ def addBooking():
 	inList.append(newBooking)
 	
 	writeFile(inList,bookingFile)
-	readWithoutColumnsFile(inList,[0,1,4])
-	return render_template('rentals.html',inList = inList)
+	inList = readWithoutColumnsFile('static\\rentals.csv',[0,1,4])
+	return render_template('rentals.html', inList = inList)
 
 if __name__ == '__main__':
 	app.run(debug=True)
