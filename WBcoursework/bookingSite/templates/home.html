@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Holiday Booking</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/slideshow.css">
+	<link rel="icon" type="image/png" href="../static/images/icon.png">
+</head>
+
+<body>
+	<h1>Holiday Booking</h1>
+	<a href="attractions">Attractions</a>
+	<a href="rental">Rental</a>
+	<a href="reviews">Reviews</a>
+
+	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow -->
+	<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_image -->
+	<div class="slideshow-container">
+		<!-- lecture slides ?? -->
+		{% for s in slides %}
+		<div class="slide">
+			<a href={{s.reference}}>
+				<img src={{s.source}} alt={{s.source}}>
+			</a>
+		</div>
+		<div class="caption">{{s.caption}}</div>
+		{% endfor %}
+
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+		<br>
+
+		<div class="dot-container">
+			{% for s in slides %}
+			<img class="dot" src={{s.source}} style="border-radius:0;height:5em;width:auto;" onclick="currentSlide({{s.index}})" alt={{s.caption}}>
+			{% endfor %}
+		</div>
+
+		<script src="../static/js/slideshow.js"></script>
+	</div><br>
+
+	<!-- https://support.google.com/maps/answer/144361?co=GENIE.Platform%3DDesktop&hl=en
+			https://www.w3schools.com/tags/tag_iframe.asp
+				clearing up what an inline frame is
+		-->
+	<div class="map-container">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2422.3180361322597!2d1.2595098161480565!3d52.618096636706575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9e149d0177b7d%3A0x5a24abc4a36227ba!2s38+Buckingham+Rd%2C+Norwich!5e0!3m2!1sen!2suk!4v1543934062988"></iframe>
+	</div>
+</body>
+
+</html>
