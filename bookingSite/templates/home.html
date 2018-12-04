@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
 		<title>The Society</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/adminloginstyle.css">
 		<style>
 		@import "compass/css3";
 		.flex-container{position:fixed;top:0;left:0;right:0;height:50px;display:flex;align-items:center;width:100%;justify-content:space-between; background:deepskyblue;}
@@ -24,6 +25,26 @@
 		</div>
 		</header>
 			<p> Here is the home page! </p>
-		</body>
-
+            
+            <button onclick="document.getElementById('popuplogin').style.display='block'">Admin Login</button>
+        
+        <div id="popuplogin" class="modal">
+        
+            <form class="modal-content animate" action="adminlogin" method="post">
+            <span onclick="document.getElementById('popuplogin').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <div class="login">
+                    
+                    <label for "user"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="user" required>
+                    
+                    <label for "pass"><b>Password</b></label> </br>
+                    <input type="password" placeholder="Enter Password" name="pass" required>
+                    
+                        <button type="submit" value="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <script src="../static/js/closemodal.js"></script>
+        </div>
+    </body>
 </html>

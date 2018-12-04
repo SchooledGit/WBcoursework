@@ -26,6 +26,10 @@ def rentals():
 @app.route('/bookings')
 def bookings():
 	return render_template('bookings.html')
+
+@app.route('/adminlogin')
+def adminlogin():
+    return render_template('adminlogin.html')
 	
 def readFile(aFile):
 	with open(aFile,'r') as inFile:
