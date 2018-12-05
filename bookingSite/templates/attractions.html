@@ -22,12 +22,12 @@
 		<div class="caption">{{s.caption}}</div>
 		{% endfor %}
 
-		<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-		<button class="next" onclick="plusSlides(1)">&#10095;</button>
+		<button class="prev" onclick="plusSlides(-1)">Previous</button>
+		<button class="next" onclick="plusSlides(1)">Next</button>
 
 		<div class="dot-container">
 			{% for s in slides %}
-			<button class="dot" onclick="currentSlide({{s.index}})" style="width:2em;height:2em;padding:0;margin-left:5px;">{{s.index}}</button>
+			<button class="dot" onclick="currentSlide({{s.index}})" style="width:3em;height:3em;margin:5px;">{{s.index}}</button>
 			{% endfor %}
 		</div>
 
