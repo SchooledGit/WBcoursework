@@ -10,49 +10,31 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 @app.route('/')
 def home():
     slides = loadSlides('home')
-    return render_template('home.html', slides=slides)
-
-
+    return render_template('home.html',slides=slides)
 @app.route('/attractions')
 def attractions():
     slides = loadSlides('attractions')
-    return render_template('attractions.html', slides=slides)
-
-
+    return render_template('attractions.html',slides=slides)
 @app.route('/reviews')
 def reviews():
     inList = readFile('static\\reviews.csv')
-    print(inList)
-    return render_template('reviews.html', inList=inList)
-
-
+    return render_template('reviews.html',inList=inList)
 @app.route('/rentals')
 def rentals():
-    inList = readWithoutColumnsFile('static\\rentals.csv', [0, 1, 4])
-
-
-return render_template('rentals.html', inList=inList)
-
-
+    inList = readWithoutColumnsFile('static\\rentals.csv',[0, 1, 4])
+    return render_template('rentals.html',inList=inList)
 @app.route('/bookings')
 def bookings():
     return render_template('bookings.html')
-
-
 @app.route('/adminlogin')
 def adminlogin():
-
-
-return render_template('adminlogin.html')
-
+    return render_template('adminlogin.html')
 
 def readFile(aFile):
     with open(aFile, 'r') as inFile:
         reader = csv.reader(inFile)
         inList = [row for row in reader]
     return inList
-
-
 def readWithoutColumnsFile(aFile, inclColumns):
     with open(aFile, 'r') as inFile:
         reader = csv.reader(inFile)
@@ -60,15 +42,11 @@ def readWithoutColumnsFile(aFile, inclColumns):
         for row in reader:
             inList.append(list(row[i] for i in inclColumns))
     return inList
-
-
 def writeFile(aList, aFile):
     with open(aFile, 'w', newline="") as outFile:
         writer = csv.writer(outFile)
         writer.writerows(aList)
     return
-
-
 @app.route('/addReview', methods=['POST'])
 def addReview():
     reviewFile = 'static\\reviews.csv'
@@ -83,8 +61,6 @@ def addReview():
 
     writeFile(inList, reviewFile)
     return render_template('reviews.html', inList=inList)
-
-
 @app.route('/addContact', methods=['POST'])
 def addContact():
     contactFile = 'static\\contacts.csv'
@@ -98,7 +74,6 @@ def addContact():
 
     writeFile(inList, contactFile)
     return render_template('contacts.html', inList=inList)
-
 
 @app.route('/addBooking', methods=['POST'])
 def addBooking():
@@ -116,7 +91,7 @@ def addBooking():
 
     writeFile(inList, bookingFile)
     inList = readWithoutColumnsFile('static\\rentals.csv', [0, 1, 4])
-	return render_template('rentals.html', inList=inList)
+    return render_template('rentals.html', inList=inList)
 
 # https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
 def loadSlides(pageName):
@@ -127,8 +102,7 @@ def loadSlides(pageName):
         reader = csv.reader(inFile)
         aList = list(reader)
         for i in aList:
-            sList.append(Slide('../static/images/' + pageName +
-                               '/' + i[0], i[1], i[2], i[3]))
+            sList.append(Slide('../static/images/' + pageName + '/' + i[0], i[1], i[2], i[3]))
     return sList
 
 if __name__ == '__main__':
