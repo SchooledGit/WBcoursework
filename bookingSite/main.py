@@ -28,7 +28,7 @@ def bookings():
     return render_template('bookings.html')
 @app.route('/adminlogin')
 def adminlogin():
-    return render_template('adminlogin.html')
+    return render_template('admin.html')
 
 def readFile(aFile):
     with open(aFile, 'r') as inFile:
