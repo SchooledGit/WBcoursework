@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask import request
 import csv
 import os
+import datetime
 from slide import Slide
 
 app = Flask(__name__)
@@ -17,18 +18,19 @@ def attractions():
     return render_template('attractions.html',slides=slides)
 @app.route('/reviews')
 def reviews():
-    inList = readFile('reviews.csv')
+    inList = readFile('static//reviews.csv')
     return render_template('reviews.html',inList=inList)
 @app.route('/rentals')
 def rentals():
-    inList = readWithoutColumnsFile('rentals.csv',[0, 1, 4])
+    inList = readWithoutColumnsFile('static//rentals.csv',[0, 1, 4])
     return render_template('rentals.html',inList=inList)
 @app.route('/bookings')
 def bookings():
     return render_template('bookings.html')
-@app.route('/adminlogin')
-def adminlogin():
-    return render_template('admin.html')
+@app.route('/admin')
+def admin():
+    inList = readFile('static//rentals.csv')
+    return render_template('admin.html', inList=inList)
 
 def readFile(aFile):
     with open(aFile, 'r') as inFile:
@@ -53,7 +55,7 @@ def addReview():
     inList = readFile(reviewFile)
 
     name = request.form['name']
-    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    date = datetime.datetime.today().strftime('%d-%m-%Y')
     rating = request.form['rating']
     comment = request.form['comment']
     newReview = [name, date, rating, comment]
@@ -92,6 +94,21 @@ def addBooking():
     writeFile(inList, bookingFile)
     inList = readWithoutColumnsFile('static\\rentals.csv', [0, 1, 4])
     return render_template('rentals.html', inList=inList)
+
+@app.route('/editAdmin',methods=['POST'])
+def editAdmin():
+    bookingFile = 'static\\rentals.csv'
+    inList = readFile(bookingFile)
+    index = request.form['choice']
+    index = int(index) - 1
+    confirmed = inList[index][4]
+    if confirmed == "false":
+        confirmed = "true"
+    else:
+        confirmed = "false"
+    inList[index][4] = confirmed
+    writeFile(inList,bookingFile)
+    return render_template('admin.html', inList = inList)
 
 # https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
 def loadSlides(pageName):
