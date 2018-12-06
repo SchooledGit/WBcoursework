@@ -23,7 +23,6 @@
 	<button onclick="document.getElementById('popuplogin').style.display='block'">Admin Login</button>
 
 	<div id="popuplogin" class="modal">
-
 		<form class="modal-content animate" action="adminlogin" method="post">
 			<span onclick="document.getElementById('popuplogin').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<div class="login">
@@ -31,7 +30,7 @@
 				<label for "user"><b>Username</b></label>
 				<input type="text" placeholder="Enter Username" name="user" required>
 
-				<label for "pass"><b>Password</b></label> </br>
+				<label for "pass"><b>Password</b></label> <br>
 				<input type="password" placeholder="Enter Password" name="pass" required>
 
 				<button type="submit" value="submit">Submit</button>
@@ -58,7 +57,7 @@
 
 		<div class="dot-container">
 			{% for s in slides %}
-			<img class="dot" src={{s.source}} style="border-radius:0;height:auto;width:auto;" onclick="currentSlide({{s.index}})" alt={{s.caption}}>
+			<img class="dot" src={{s.source}} style="border-radius:0;height:2em;width:auto;" onclick="currentSlide({{s.index}})" alt={{s.caption}}>
 			{% endfor %}
 		</div>
 	</div><br>

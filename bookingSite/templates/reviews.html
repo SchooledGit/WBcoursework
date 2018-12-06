@@ -4,15 +4,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
 	<title>Reviews</title>
-	<style>
-		@import "compass/css3";
-            .flex-container{position:fixed;top:0;left:0;right:0;height:50px;display:flex;align-items:center;width:100%;justify-content:space-between; background:deepskyblue;}
-            .links{padding:30px;}
-            .thing{padding:30px;}
-            body{margin-top:50px;}
-            .bigtextbox{width: 60%; height: 30em; padding:1px;overflow:auto; resize:none;}
-
-        </style>
+	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
 </head>
 
 <body>
@@ -25,15 +17,15 @@
 			</div>
 		</div>
 	</header>
-	<form action="addReview" method="post"></br>
-		Rating </br>
+	<form action="addReview" method="post"><br>
+		Rating <br>
 		1 <input type="radio" name="rating" value="1"> 2 <input type="radio" name="rating" value="2"> 3 <input type="radio" name="rating" value="3"> 4 <input type="radio" name="rating" value="4"> 5 <input type="radio" name="rating" value="5">
-		</br></br>
-		Name </br> <input type="text" name="name"></br>
-		Comment</br> <textarea class="bigtextbox" name="comment"> </textarea></br>
-		<input type="submit" value="Submit" /></br>
+		<br><br>
+		Name <br> <input type="text" name="name"><br>
+		Comment<br> <textarea class="bigtextbox" name="comment"> </textarea><br>
+		<input type="submit" value="Submit" /><br>
 	</form>
-	</br>
+	<br>
 
 	<table border="1">
 		<thead>

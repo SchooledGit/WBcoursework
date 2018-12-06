@@ -17,11 +17,11 @@ def attractions():
     return render_template('attractions.html',slides=slides)
 @app.route('/reviews')
 def reviews():
-    inList = readFile('static\\reviews.csv')
+    inList = readFile('reviews.csv')
     return render_template('reviews.html',inList=inList)
 @app.route('/rentals')
 def rentals():
-    inList = readWithoutColumnsFile('static\\rentals.csv',[0, 1, 4])
+    inList = readWithoutColumnsFile('rentals.csv',[0, 1, 4])
     return render_template('rentals.html',inList=inList)
 @app.route('/bookings')
 def bookings():
