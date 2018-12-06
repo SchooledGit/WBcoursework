@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
-		<title>Reviews</title>
-	</head>
-	<body>
-		<h2>Reviews</h2>
-		<a href="/">Home</a>
-		<a href="attractions">Attractions</a>
-		<a href="rental">Rental</a>
-	</body>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
+	<title>Reviews</title>
+	<style>
+		@import "compass/css3";
+            .flex-container{position:fixed;top:0;left:0;right:0;height:50px;display:flex;align-items:center;width:100%;justify-content:space-between; background:deepskyblue;}
+            .links{padding:30px;}
+            .thing{padding:30px;}
+            body{margin-top:50px;}
+            .bigtextbox{width: 60%; height: 30em; padding:1px;overflow:auto; resize:none;}
+
+        </style>
+</head>
+
+<body>
+	<header>
+		<div class="flex-container">
+			<h4 class="thing">Review Us!</h4>
+			<div class="links">
+				<a href="/">Home</a>
+				<a href="/rentals">Rentals</a>
+			</div>
+		</div>
+	</header>
+	<form action="addReview" method="post"></br>
+		Rating </br>
+		1 <input type="radio" name="rating" value="1"> 2 <input type="radio" name="rating" value="2"> 3 <input type="radio" name="rating" value="3"> 4 <input type="radio" name="rating" value="4"> 5 <input type="radio" name="rating" value="5">
+		</br></br>
+		Name </br> <input type="text" name="name"></br>
+		Comment</br> <textarea class="bigtextbox" name="comment"> </textarea></br>
+		<input type="submit" value="Submit" /></br>
+	</form>
+	</br>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Rating</th>
+				<th>Text</th>
+			</tr>
+		</thead>
+		{% for line in inList %}
+		<tr>
+			{% for item in line%}
+			<td>
+				{{item}}
+			</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+
+</body>
+
 </html>

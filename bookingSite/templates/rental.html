@@ -1,13 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
-		<title>Rental Request</title>
-	</head>
-	<body>
-		<h2>Rental Request</h2>
-		<a href="/">Home</a>
-		<a href="attractions">Attractions</a>
-		<a href="reviews">Reviews</a>
-	</body>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
+	<title>Rental Request</title>
+	<style>
+		@import "compass/css3";
+
+		.flex-container {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			justify-content: space-between;
+			background: deepskyblue;
+		}
+
+		.links {
+			padding: 30px;
+		}
+
+		.thing {
+			padding: 30px;
+		}
+
+		body {
+			margin-top: 50px;
+		}
+
+		.bigtextbox {
+			width: 50em;
+			height: 30em;
+			padding: 1px;
+			overflow: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div class="flex-container">
+			<h4 class="thing">Rental Dates</h4>
+			<div class="links">
+				<a href="/">Home</a>
+				<a href="/reviews">Reviews</a>
+			</div>
+		</div>
+	</header>
+	<a href="/bookings">Book the Property</a>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Confirmed</th>
+			</tr>
+		</thead>
+		{% for line in inList %}
+		<tr>
+			{% for item in line%}
+			<td>
+				{{item}}
+			</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+
 </html>

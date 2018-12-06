@@ -4,11 +4,43 @@
 <head>
 	<title>Holiday Booking</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/slideshow.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
 	<link rel="icon" type="image/png" href="../static/images/icon.png">
 </head>
 
 <body>
-	<h1>Holiday Booking</h1>
+	<header>
+
+		<div class="flex-container">
+			<h4 class="title">Really Good Rental Property!</h4>
+			<div class="links">
+				<a href="/reviews">Reviews</a>
+				<a href="/rentals">Rentals</a>
+			</div>
+		</div>
+	</header>
+
+	<button onclick="document.getElementById('popuplogin').style.display='block'">Admin Login</button>
+
+	<div id="popuplogin" class="modal">
+
+		<form class="modal-content animate" action="adminlogin" method="post">
+			<span onclick="document.getElementById('popuplogin').style.display='none'" class="close" title="Close Modal">&times;</span>
+			<div class="login">
+
+				<label for "user"><b>Username</b></label>
+				<input type="text" placeholder="Enter Username" name="user" required>
+
+				<label for "pass"><b>Password</b></label> </br>
+				<input type="password" placeholder="Enter Password" name="pass" required>
+
+				<button type="submit" value="submit">Submit</button>
+			</div>
+	</div>
+	</form>
+	<script src="../static/js/closemodal.js"></script>
+	</div>
 
 	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow -->
 	<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_image -->

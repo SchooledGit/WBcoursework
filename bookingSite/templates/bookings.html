@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-type" content="text/html:charset=utf-8" />
+  <title>The Society</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+  <style>
+    .inputs{text-align:center;margin:0 auto;width: 40%; clear:both;}
+            .inputs input{width:100%;clear:both;}
+		</style>
+
+</head>
+
+<body>
+  <header>
+
+    <div class="flex-container">
+      <h4 class="title">Book the Property</h4>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/rentals">Back</a>
+      </div>
+    </div>
+  </header>
+  <div class="inputs">
+    <form action="addBooking" method="post"><br>
+      Start Date <input type="date" data-date="" data-date-format="DD MM YYYY" name="sdate"> <br>
+      End Date <input type="date" name="edate"> <br>
+      Name <input type="text" name="name"> <br>
+      Email <input type="text" name="email"> <br>
+      <button type="submit" value="submit" />Submit<br>
+    </form>
+  </div>
+
+</body>
+
+</html>
