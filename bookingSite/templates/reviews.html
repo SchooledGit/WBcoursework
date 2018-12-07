@@ -5,48 +5,58 @@
 	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
 	<title>Reviews</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/review.css">
 </head>
 
 <body>
-	<header>
-		<div class="flex-container">
-			<h4 class="thing">Review Us!</h4>
-			<div class="links">
-				<a href="/">Back</a>
-				<a href="/attractions">Local Attractions</a>
-				<a href="/rentals">Rentals</a>
-			</div>
+	<header id="navbar">
+		<h4 class="title">Review Us!</h4>
+		<div class="links">
+			<a href="/">Back</a>
+			<a href="/attractions">Local Attractions</a>
+			<a href="/rentals">Rentals</a>
 		</div>
 	</header>
-	<form action="addReview" method="post"><br>
-		Rating <br>
-		1 <input type="radio" name="rating" value="1"> 2 <input type="radio" name="rating" value="2"> 3 <input type="radio" name="rating" value="3"> 4 <input type="radio" name="rating" value="4"> 5 <input type="radio" name="rating" value="5">
-		<br><br>
-		Name <br> <input type="text" name="name"><br>
-		Comment<br> <textarea class="bigtextbox" name="comment"> </textarea><br>
-		<input type="submit" value="Submit" /><br>
-	</form>
-	<br>
 
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Rating</th>
-				<th>Text</th>
-			</tr>
-		</thead>
-		{% for line in inList %}
-		<tr>
-			{% for item in line %}
-			<td>
-				{{item}}
-			</td>
+	<div class="flexy container" style="align-items:stretch;">
+		<div class="container" style="margin-right:0.5em;margin-top:0.5em;">
+			<form action="addReview" method="post">
+			Rating:
+			<!-- https://stackoverflow.com/questions/29706099/how-to-make-a-for-loop-in-jinja?rq=1 -->
+			<!-- guessed the range(1, 6) since it looked a lot like python -->
+			{% for i in range(1, 6) %}
+			{{i}}<input type="radio" name="rating" value={{i}} class="dot">
 			{% endfor %}
-		</tr>
-		{% endfor %}
-	</table>
+			<br>
+			Name: <input type="text" name="name"><br>
+			Comment:<br><textarea class="bigtextbox" name="comment"></textarea><br>
+			<input type="submit" value="Submit"><br>
+			</form>
+		</div>
+		<br>
+
+		<div class="container" style="margin-left:0.5em;margin-top:0.5em;">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Rating</th>
+						<th>Text</th>
+					</tr>
+				</thead>
+				{% for line in inList %}
+				<tr>
+					{% for item in line %}
+					<td>
+						{{item}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
 
 </body>
 

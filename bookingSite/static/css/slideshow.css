@@ -1,5 +1,4 @@
 /* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow, changed to look a bit better and some els have common looks */
-/* flexbox */
 body {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -9,41 +8,31 @@ body {
 img {
   max-height: 100%;
   max-width: 100%;
-  margin: 0;
 }
 
-.dot-container {
-  display: flex;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.slideshow-container {
-  width: 100%;
-  margin: 0;
-  position: relative;
+.map {
+  height: 20em;
+  text-align: center;
 }
 
 .slide {
   display: none;
-  height: 20em;
-  max-width: 100%;
-  text-align: center;
+  height: 100%;
+  max-width: 80%;
 }
 
 .caption {
-  color: black;
-  margin: auto;
-  font-size: 1em;
   text-align: center;
+  padding: 0.5em;
 }
 
 .dot {
-  padding: 0;
   border-radius: 50%;
   opacity: 0.3;
+  width: 3em;
+  height: 3em;
+  margin: 0 0.5em;
+  padding: 0;
 }
 
 .dot:hover, .active {
@@ -51,40 +40,10 @@ img {
 }
 
 .prev, .next {
-  height: 24em;
-  width: 25%;
-  top: 0;
-  font-weight: bold;
-  position: absolute;
-  opacity: 0;
-}
-
-.next {
-  right: 0;
-}
-
-.prev:hover, .next:hover {
+  height: 100%;
+  flex-grow: 1;
   opacity: 0.3;
 }
 
-iframe {
-  width: 100%;
-  height: 100%;
-}
-
-.map-container {
-  width: 100%;
-  height: 20em;
-  text-align: center;
-  border: 0;
-}
-
-button {
-  background-color: deepskyblue;
-  color: white;
-  padding: 14px 20px;
-  margin 0;
-  border: none;
-  cursor: pointer;
-  width: 100px;
-}
+.prev:hover, .next:hover {
+  opacity: 0.8;

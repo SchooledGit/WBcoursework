@@ -1,0 +1,6 @@
+/* https://stackoverflow.com/questions/5235142/how-to-disable-resizable-property-of-textarea */
+.bigtextbox {
+  resize: none;
+  width: 100%;
+  height: 40em;
+}

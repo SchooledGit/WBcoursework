@@ -9,42 +9,49 @@
 </head>
 
 <body>
-	<header>
-		<div class="flex-container">
-			<h4 class="title">Really Good Rental Property!</h4>
-			<div class="links">
-				<a href="/">Back</a>
-				<a href="/reviews">Reviews</a>
-				<a href="/rentals">Rentals</a>
-			</div>
+	<header id="navbar">
+		<h4 class="title">Really Good Rental Property!</h4>
+		<div class="links">
+			<a href="/">Home</a>
+			<a href="/reviews">Reviews</a>
+			<a href="/rentals">Rentals</a>
 		</div>
 	</header>
-	
-	</br>
-	
 	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow -->
 	<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_image -->
-	<div class="slideshow-container">
+	<!-- images -->
+	<div class="flexy container" style="height:30em">
+		<button class="prev" onclick="plusSlides(-1)">Previous</button>
+
 		{% for s in slides %}
 		<div class="slide">
 			<a href={{s.reference}}>
 				<img src={{s.source}} alt={{s.source}}>
 			</a>
 		</div>
-		<div class="caption">{{s.caption}}</div>
 		{% endfor %}
 
-		<button class="prev" onclick="plusSlides(-1)">Previous</button>
 		<button class="next" onclick="plusSlides(1)">Next</button>
+	</div>
 
-		<div class="dot-container">
-			{% for s in slides %}
-			<button class="dot" onclick="currentSlide({{s.index}})" style="width:3em;height:3em;margin:5px;">{{s.index}}</button>
-			{% endfor %}
-		</div>
+	<!-- captions -->
+	<div class="container">
+		{% for s in slides %}
+		<div class="caption">{{s.caption}}</div>
+		{% endfor %}
+	</div>
 
-		<script src="../static/js/slideshow.js"></script>
-	</div><br>
+	<!-- dot containerr -->
+	<div class="flexy container">
+		{% for s in slides %}
+		<button class="dot" onclick="currentSlide({{s.index}})">{{s.index}}</button>
+		{% endfor %}
+	</div>
+
+	<script src="../static/js/slideshow.js"></script>
+
+	<br>
+
 </body>
 
 </html>

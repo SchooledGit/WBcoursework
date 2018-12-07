@@ -113,13 +113,10 @@ def editAdmin():
 # https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
 def loadSlides(pageName):
     # https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
-    filepath = dir_path + '\\static\\' + pageName + '.csv'
     sList = []
-    with open(filepath, 'r') as inFile:
-        reader = csv.reader(inFile)
-        aList = list(reader)
-        for i in aList:
-            sList.append(Slide('../static/images/' + pageName + '/' + i[0], i[1], i[2], i[3]))
+    tempList = readFile('static\\' + pageName + '.csv')
+    for i in tempList:
+        sList.append(Slide('../static/images/' + pageName + '/' + i[0], i[1], i[2], i[3]))
     return sList
 
 if __name__ == '__main__':
