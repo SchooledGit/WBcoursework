@@ -2,6 +2,8 @@ var totalRowCount = 0;
 var rowCount = 0;
 var table = document.getElementById("allBookings");
 var rows = table.getElementsByTagName("tr");
+var wholeString = "";
+var partString;
 
 for (var i = 0; i < rows.length; i++) {
 	totalRowCount++;
@@ -12,8 +14,6 @@ for (var i = 0; i < rows.length; i++) {
     message += "\nRow Count: " + rowCount;
 }
 
-var wholeString = "";
-var partString;
 
 for (var i = 1; i < totalRowCount; i++){
 	partString = i + '<input type="radio" name="choice" value="' + i + '">'

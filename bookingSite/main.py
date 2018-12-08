@@ -27,16 +27,13 @@ def rentals():
 @app.route('/bookings')
 def bookings():
     return render_template('bookings.html')
-@app.route('/admin')
-def admin():
-    inList = readFile('static//rentals.csv')
-    return render_template('admin.html', inList=inList)
 
 def readFile(aFile):
     with open(aFile, 'r') as inFile:
         reader = csv.reader(inFile)
         inList = [row for row in reader]
     return inList
+    
 def readWithoutColumnsFile(aFile, inclColumns):
     with open(aFile, 'r') as inFile:
         reader = csv.reader(inFile)
@@ -44,6 +41,7 @@ def readWithoutColumnsFile(aFile, inclColumns):
         for row in reader:
             inList.append(list(row[i] for i in inclColumns))
     return inList
+    
 def writeFile(aList, aFile):
     with open(aFile, 'w', newline="") as outFile:
         writer = csv.writer(outFile)
@@ -94,6 +92,19 @@ def addBooking():
     writeFile(inList, bookingFile)
     inList = readWithoutColumnsFile('static\\rentals.csv', [0, 1, 4])
     return render_template('rentals.html', inList=inList)
+    
+@app.route('/checkLogin',methods=['POST'])
+def checkLogin():
+    accountFile = 'static\\accounts.csv'
+    inList = readFile(accountFile)
+    enterName = request.form['user']
+    enterPass = request.form['pass']
+    for i in range(len(inList)):
+        if inList[i][0] == enterName and inList[i][1] == enterPass:
+            inList = readFile('static//rentals.csv')
+            return render_template('admin.html',inList = inList)
+    slides = loadSlides('home')
+    return render_template('home.html',slides=slides)
 
 @app.route('/editAdmin',methods=['POST'])
 def editAdmin():
