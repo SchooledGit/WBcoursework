@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Holiday Booking - Admin</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+  <link rel="icon" type="image/png" href="../static/images/icon.png">
+</head>
+
+<body>
+  <header id="navbar">
+    <h4 class="title">Admin Page</h4>
+    <div class="links">
+      <a href="/">Back</a>
+    </div>
+  </header>
+
+  <table border="1" id="allBookings">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Confirmed</th>
+      </tr>
+    </thead>
+    {% for line in inList %}
+    <tr>
+      {% for item in line %}
+      <td>
+        {{item}}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  <p>Click on the booking you want to swap the confirmation of (true->false, false->true)</p>
+  <form action="confirmBooking" method="post">
+    <div id="dynamicRadio"></div>
+    <input type="submit" value="Submit"></input>
+    <script src="../static/js/showAdminButtons.js"></script>
+  </form>
+</body>
+
+</html>
