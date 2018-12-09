@@ -15,18 +15,26 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 def home():
     slides = loadSlides('home')
     return render_template('home.html', slides=slides)
+
+
 @app.route('/attractions')
 def attractions():
     slides = loadSlides('attractions')
     return render_template('attractions.html', slides=slides)
+
+
 @app.route('/reviews')
 def reviews():
     inList = readFile('static//reviews.csv')
     return render_template('reviews.html', inList=inList)
+
+
 @app.route('/rentals')
 def rentals():
     inList = readFileColumns('static//rentals.csv', [0, 1, 4])
     return render_template('rentals.html', inList=inList)
+
+
 @app.route('/bookings')
 def bookings():
     return render_template('bookings.html')
@@ -46,8 +54,6 @@ def readFileColumns(filePath, inclColumns):
         for row in reader:
             inList.append(list(row[i] for i in inclColumns))
     return inList
-    
-
 
 
 def appendFile(aList, filePath):
@@ -64,15 +70,17 @@ def writeFile(aList, filePath):
         writer.writerows(aList)
     return
 
-#https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string
+# https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string
+
+
 def listToPlain(aList):
     output = ""
     for line in aList:
         output += ''.join(line)
         output += "\n"
     return output
-    
-    
+
+
 @app.route('/addAdmin', methods=['POST'])
 def addAdmin():
     accountFile = 'static\\accounts.csv'
@@ -80,11 +88,12 @@ def addAdmin():
     password = request.form['pass']
     verification = request.form['verification']
     isAdmin = False
-    
-    if checkVerification(verification): #in future, one may send one-time passes to email which are stored in a temporary csv
-        salt=''
-        hash=''
-        salt = generateSalt(20) #even numbers
+
+    # in future, one may send one-time passes to email which are stored in a temporary csv
+    if checkVerification(verification):
+        salt = ''
+        hash = ''
+        salt = generateSalt(20)  # even numbers
         hash = hashInput(password, salt)
         newAccount = [name, salt, hash]
         appendFile([newAccount], accountFile)
@@ -92,15 +101,17 @@ def addAdmin():
         isAdmin = True
     slides = loadSlides('home')
     if isAdmin:
-        return render_template('admin.html',inList = inList)
+        return render_template('admin.html', inList=inList)
     else:
-        return render_template('home.html',slides=slides)
+        return render_template('home.html', slides=slides)
 
 
 def checkVerification(verification):
-    return verification == 'admin1' #in future, one may send one-time passes to email which are stored in a temporary csv
+    # in future, one may send one-time passes to email which are stored in a temporary csv
+    return verification == 'admin1'
 
-@app.route('/verifyAdmin',methods=['POST'])
+
+@app.route('/verifyAdmin', methods=['POST'])
 def verifyAdmin():
     accountFile = 'static\\accounts.csv'
     inList = readFile(accountFile)
@@ -110,15 +121,15 @@ def verifyAdmin():
 
     for i in range(len(inList)):
         if inList[i][0] == name and not isAdmin:
-            if validate(password, inList[i][1], inList[i][2]): #compares hashes
+            if validate(password, inList[i][1], inList[i][2]):  # compares hashes
                 isAdmin = True
                 inList = readFile('static//rentals.csv')
     slides = loadSlides('home')
 
     if isAdmin:
-        return render_template('admin.html',inList = inList)
+        return render_template('admin.html', inList=inList)
     else:
-        return render_template('home.html',slides=slides)
+        return render_template('home.html', slides=slides)
 
 
 @app.route('/addReview', methods=['POST'])
@@ -135,11 +146,14 @@ def addReview():
     inList = readFile(reviewFile)
 
     return render_template('reviews.html', inList=inList)
-    
-#https://stackoverflow.com/questions/29706239/python-check-if-two-tripsdates-overlap
-def dateCheck(start1,end1,start2,end2):
+
+# https://stackoverflow.com/questions/29706239/python-check-if-two-tripsdates-overlap
+
+
+def dateCheck(start1, end1, start2, end2):
     return (start1 <= start2 <= end1 or start1 <= end2 <= end1 or start2 <= start1 and end2 >= end1)
-    
+
+
 @app.route('/addBooking', methods=['POST'])
 def addBooking():
     currentDate = datetime.datetime.today().strftime('%d-%m-%Y')
@@ -153,9 +167,9 @@ def addBooking():
     confirmed = "false"
     isOkay = False
 
-    if dateCheck(currentDate,currentDate,sdate,edate):
+    if dateCheck(currentDate, currentDate, sdate, edate):
         for line in inlist:
-            if not isOkay and dateCheck(line[0],line[1],sdate,edate):
+            if not isOkay and dateCheck(line[0], line[1], sdate, edate):
                 newBooking = [sdate, edate, name, email, confirmed]
                 appendFile([newBooking], bookingFile)
                 isOkay = True

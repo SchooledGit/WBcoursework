@@ -26,7 +26,7 @@ input[type=text], input[type=password] {
   position: fixed;
   top: 0;
   right: 0;
-  left:0;
+  left: 0;
   height: 3em;
   display: flex;
   align-items: center;
@@ -57,8 +57,11 @@ body {
 .container {
   margin: 0;
   padding: 0;
-  /* border: solid 1px deepskyblue; */
   width: 100%;
+}
+
+.bordered {
+  border: solid 1px deepskyblue;
 }
 
 /* https://www.w3schools.com/css/tryit.asp?filename=trycss_table_fancy */

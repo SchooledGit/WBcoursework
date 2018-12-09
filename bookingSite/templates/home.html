@@ -28,31 +28,31 @@
 
 		{% for s in slides %}
 		<div class="slide">
-            <img src={{s.source}} alt={{s.source}}>
+			<img src={{s.source}} alt={{s.source}}>
 		</div>
 		{% endfor %}
 
 		<button class="next" onclick="plusSlides(1)">Next</button>
 	</div>
+
 	<!-- captions -->
 	<div class="container">
 		{% for s in slides %}
 		<div class="caption">{{s.caption}}</div>
 		{% endfor %}
 	</div>
+
 	<!-- dot containerr -->
 	<div class="flexy container">
 		{% for s in slides %}
 		<button class="dot" onclick="currentSlide({{s.index}})">{{s.index}}</button>
 		{% endfor %}
 	</div>
-    
-            <!-- descriptions -->
-    <div class="container">
-        {% for s in slides %}
-        <div class="description">{{s.text}}</div>
-        {% endfor %}
-    </div>
+
+	<!-- descriptions -->
+	{% for s in slides %}
+	<div class="description">{{s.text}}</div>
+	{% endfor %}
 	<script src="../static/js/slideshow.js"></script>
 
 	<br>
@@ -61,41 +61,44 @@
 		-->
 	<iframe class="map container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2422.3180361322597!2d1.2595098161480565!3d52.618096636706575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9e149d0177b7d%3A0x5a24abc4a36227ba!2s38+Buckingham+Rd%2C+Norwich!5e0!3m2!1sen!2suk!4v1543934062988"></iframe>
 
-    <div class="flexy container">
-        <button onclick="document.getElementById('popuplogin').style.display='block'">Admin Sign in</button>
-        <div id="popuplogin" class="modal">
-            <form class="modal-content animate" action="verifyAdmin" method="post">
-                <button title="Close Modal" class="close" onclick="document.getElementById('popuplogin').style.display='none'">&times;</button><br>
+	<!-- admin login -->
+	<div class="flexy container">
+		<button onclick="document.getElementById('popuplogin').style.display='block'">Admin Sign in</button>
+		<div id="popuplogin" class="modal">
+			<form class="modal-content animate" action="verifyAdmin" method="post">
+				<button title="Close Modal" class="close" onclick="document.getElementById('popuplogin').style.display='none'">&times;</button><br>
 
-                <label for "user">Username</label>
-                <input type="text" placeholder="Enter Username" name="user" required>
+				<label for "user">Username</label>
+				<input type="text" placeholder="Enter Username" name="user" required>
 
-                <label for "pass">Password</label>
-                <input type="password" placeholder="Enter Password" name="pass" required>
+				<label for "pass">Password</label>
+				<input type="password" placeholder="Enter Password" name="pass" required>
 
-                <button type="submit" value="submit">Submit</button>
-            </form>
-        </div>
-        <script src="../static/js/closelogin.js"></script>
-        <button onclick="document.getElementById('popupregister').style.display='block'">Admin Register</button>
-        <div id="popupregister" class="modal">
-            <form class="modal-content animate" action="addAdmin" method="post">
-                <button title="Close Modal" class="close" onclick="document.getElementById('popupregister').style.display='none'">&times;</button><br>
+				<button type="submit" value="submit">Submit</button>
+			</form>
+		</div>
+		<script src="../static/js/closelogin.js"></script>
 
-                <label for "user">Username</label>
-                <input type="text" placeholder="Enter Username" name="user" required>
+		<!-- admin register -->
+		<button onclick="document.getElementById('popupregister').style.display='block'">Admin Register</button>
+		<div id="popupregister" class="modal">
+			<form class="modal-content animate" action="addAdmin" method="post">
+				<button title="Close Modal" class="close" onclick="document.getElementById('popupregister').style.display='none'">&times;</button><br>
 
-                <label for "pass">Password</label>
-                <input type="password" placeholder="Enter Password" name="pass" required>
-                
-                <label for "verification">Verification Code</label>
-                <input type="text" placeholder="Enter Verification Code" name="verification" required>
-                
-                <button type="submit" value="submit">Submit</button>
-            </form>
-        </div>
-        <script src="../static/js/closeregister.js"></script>
-    </div>
+				<label for "user">Username</label>
+				<input type="text" placeholder="Enter Username" name="user" required>
+
+				<label for "pass">Password</label>
+				<input type="password" placeholder="Enter Password" name="pass" required>
+
+				<label for "verification">Verification Code</label>
+				<input type="text" placeholder="Enter Verification Code" name="verification" required>
+
+				<button type="submit" value="submit">Submit</button>
+			</form>
+		</div>
+		<script src="../static/js/closeregister.js"></script>
+	</div>
 </body>
 
 </html>

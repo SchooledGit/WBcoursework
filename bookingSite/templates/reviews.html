@@ -2,10 +2,10 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
 	<title>Reviews</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/review.css">
+	<link rel="icon" type="image/png" href="../static/images/icon.png">
 </head>
 
 <body>
@@ -23,7 +23,6 @@
 			<form action="addReview" method="post">
 				Rating:
 				<!-- https://stackoverflow.com/questions/29706099/how-to-make-a-for-loop-in-jinja?rq=1 -->
-				<!-- guessed the range(1, 6) since it looked a lot like python -->
 				{% for i in range(1, 6) %}
 				{{i}}<input type="radio" name="rating" value={{i}} class="dot">
 				{% endfor %}
