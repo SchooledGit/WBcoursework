@@ -8,6 +8,16 @@ button, input[type=submit] {
   cursor: pointer;
 }
 
+input[type=text], input[type=password] {
+  /* CSS to style the inputs on the login popup*/
+  width: 100%;
+  padding: 0;
+  display: inline-block;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
 #navbar {
   margin: 0;
   padding: 0;

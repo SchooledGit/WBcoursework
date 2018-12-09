@@ -4,84 +4,118 @@ import csv
 import os
 import datetime
 from slide import Slide
+import encryption
 
 app = Flask(__name__)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+
 @app.route('/')
 def home():
     slides = loadSlides('home')
-    return render_template('home.html',slides=slides)
+    return render_template('home.html', slides=slides)
+
+
 @app.route('/attractions')
 def attractions():
     slides = loadSlides('attractions')
-    return render_template('attractions.html',slides=slides)
+    return render_template('attractions.html', slides=slides)
+
+
 @app.route('/reviews')
 def reviews():
     inList = readFile('static//reviews.csv')
-    return render_template('reviews.html',inList=inList)
+    return render_template('reviews.html', inList=inList)
+
+
 @app.route('/rentals')
 def rentals():
-    inList = readWithoutColumnsFile('static//rentals.csv',[0, 1, 4])
-    return render_template('rentals.html',inList=inList)
+    inList = readFileColumns('static//rentals.csv', [0, 1, 4])
+    return render_template('rentals.html', inList=inList)
+
+
 @app.route('/bookings')
 def bookings():
     return render_template('bookings.html')
+
+
 @app.route('/admin')
 def admin():
     inList = readFile('static//rentals.csv')
     return render_template('admin.html', inList=inList)
 
-def readFile(aFile):
-    with open(aFile, 'r') as inFile:
+
+def readFile(filePath):
+    with open(filePath, 'r') as inFile:
         reader = csv.reader(inFile)
         inList = [row for row in reader]
     return inList
-def readWithoutColumnsFile(aFile, inclColumns):
-    with open(aFile, 'r') as inFile:
+
+
+def readFileColumns(filePath, inclColumns):
+    with open(filePath, 'r') as inFile:
         reader = csv.reader(inFile)
         inList = []
         for row in reader:
             inList.append(list(row[i] for i in inclColumns))
     return inList
-def writeFile(aList, aFile):
-    with open(aFile, 'w', newline="") as outFile:
+
+
+def appendFile(aList, filePath):
+    # https://www.guru99.com/reading-and-writing-files-in-python.html
+    with open(filePath, 'a') as outFile:
         writer = csv.writer(outFile)
         writer.writerows(aList)
     return
+
+
+def writeFile(aList, filePath):
+    with open(filePath, 'w', newline="") as outFile:
+        writer = csv.writer(outFile)
+        writer.writerows(aList)
+    return
+
+
+@app.route('/addAdmin', methods=['POST'])
+def addAdmin(verification):
+    inList = readFile('static\\accounts.csv')
+    # if verification == "admin1": #in later iterations, use a fully padded verification system (for example hashing and with a ver code)
+    #    inList = readFile('static\\accounts.csv')
+    return render_template('admin.html', inList=inList)
+
+
 @app.route('/addReview', methods=['POST'])
 def addReview():
     reviewFile = 'static\\reviews.csv'
-    inList = readFile(reviewFile)
 
     name = request.form['name']
     date = datetime.datetime.today().strftime('%d-%m-%Y')
     rating = request.form['rating']
     comment = request.form['comment']
-    newReview = [name, date, rating, comment]
-    inList.append(newReview)
 
-    writeFile(inList, reviewFile)
+    appendFile([[name, date, rating, comment]], reviewFile)
+    inList = readFile(reviewFile)
+
     return render_template('reviews.html', inList=inList)
+
+
 @app.route('/addContact', methods=['POST'])
 def addContact():
     contactFile = 'static\\contacts.csv'
-    inList = readFile(contactFile)
 
     contact = request.form['contact']
     number = request.form['number']
+    appendFile([[contact, number]], contactFile)
 
-    newContact = [contact, number]
-    inList.append(newContact)
+    inList = readFile(contactFile)
 
-    writeFile(inList, contactFile)
     return render_template('contacts.html', inList=inList)
+
 
 @app.route('/addBooking', methods=['POST'])
 def addBooking():
     bookingFile = 'static\\rentals.csv'
     inList = readFile(bookingFile)
-
     sdate = request.form['sdate']
     edate = request.form['edate']
     name = request.form['name']
@@ -91,12 +125,14 @@ def addBooking():
     newBooking = [sdate, edate, name, email, confirmed]
     inList.append(newBooking)
 
-    writeFile(inList, bookingFile)
-    inList = readWithoutColumnsFile('static\\rentals.csv', [0, 1, 4])
+    appendFile([[sdate, edate, name, email, confirmed]], bookingFile)
+    
+    inList = readFileColumns('static\\rentals.csv', [0, 1, 4])
     return render_template('rentals.html', inList=inList)
 
-@app.route('/editAdmin',methods=['POST'])
-def editAdmin():
+
+@app.route('/confirmBooking', methods=['POST'])
+def confirmBooking():
     bookingFile = 'static\\rentals.csv'
     inList = readFile(bookingFile)
     index = request.form['choice']
@@ -107,17 +143,18 @@ def editAdmin():
     else:
         confirmed = "false"
     inList[index][4] = confirmed
-    writeFile(inList,bookingFile)
-    return render_template('admin.html', inList = inList)
+    writeFile(inList, bookingFile)
+    return render_template('admin.html', inList=inList)
 
-# https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
+
 def loadSlides(pageName):
-    # https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
     sList = []
     tempList = readFile('static\\' + pageName + '.csv')
     for i in tempList:
-        sList.append(Slide('../static/images/' + pageName + '/' + i[0], i[1], i[2], i[3]))
+        sList.append(Slide('../static/images/' + pageName +
+                           '/' + i[0], i[1], i[2], i[3]))
     return sList
+
 
 if __name__ == '__main__':
     app.run(debug=True)
