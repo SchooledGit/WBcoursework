@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
-		<title>Local Attractions</title>
-	</head>
-	<body>
-		<h2>Local Attractions</h2>
-	</body>
+
+<head>
+	<title>Local Attractions</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/slideshow.css">
+	<link rel="icon" type="image/png" href="../static/images/icon.png">
+</head>
+
+<body>
+	<header id="navbar">
+		<h4 class="title">Really Good Rental Property!</h4>
+		<div class="links">
+			<a href="/">Home</a>
+			<a href="/reviews">Reviews</a>
+			<a href="/rentals">Rentals</a>
+		</div>
+	</header>
+	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow -->
+	<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_image -->
+	<!-- images -->
+	<div class="flexy container" style="height:30em">
+		<button class="prev" onclick="plusSlides(-1)">Previous</button>
+
+		{% for s in slides %}
+		<div class="slide">
+				<img src={{s.source}} alt={{s.source}}>
+		</div>
+		{% endfor %}
+
+		<button class="next" onclick="plusSlides(1)">Next</button>
+	</div>
+
+	<!-- captions -->
+	<div class="container">
+		{% for s in slides %}
+		<div class="caption">{{s.caption}}</div>
+		{% endfor %}
+	</div>
+
+	<!-- dot containerr -->
+	<div class="flexy container">
+		{% for s in slides %}
+		<button class="dot" onclick="currentSlide({{s.index}})">{{s.index}}</button>
+		{% endfor %}
+	</div>
+    
+    <!-- descriptions -->
+    <div class="container">
+        {% for s in slides %}
+        <div class="description">{{s.text}}</div>
+        {% endfor %}
+    </div>
+
+	<script src="../static/js/slideshow.js"></script>
+
+	<br>
+
+</body>
+
 </html>

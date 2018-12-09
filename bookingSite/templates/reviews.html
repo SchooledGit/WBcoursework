@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html:charset=utf-8"/>
-		<title>Reviews</title>
-	</head>
-	<body>
-		<h2>Reviews</h2>
-	</body>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
+	<title>Reviews</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/review.css">
+</head>
+
+<body>
+	<header id="navbar">
+		<h4 class="title">Review Us!</h4>
+		<div class="links">
+			<a href="/">Home</a>
+			<a href="/attractions">Local Attractions</a>
+			<a href="/rentals">Rentals</a>
+		</div>
+	</header>
+
+	<div class="flexy container" style="align-items:stretch;">
+		<div class="container" style="margin-right:0.5em;margin-top:0.5em;">
+			<form action="addReview" method="post">
+				Rating:
+				<!-- https://stackoverflow.com/questions/29706099/how-to-make-a-for-loop-in-jinja?rq=1 -->
+				<!-- guessed the range(1, 6) since it looked a lot like python -->
+				{% for i in range(1, 6) %}
+				{{i}}<input type="radio" name="rating" value={{i}} class="dot">
+				{% endfor %}
+				<br>
+				Name: <input type="text" name="name" id="name"><br>
+				Comment:<br><textarea id="comment" name="comment"></textarea><br>
+				<input type="submit" value="Submit"><br>
+			</form>
+		</div>
+		<br>
+
+		<div class="container" style="margin-left:0.5em;margin-top:0.5em;">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Rating</th>
+						<th>Text</th>
+					</tr>
+				</thead>
+				{% for line in inList %}
+				<tr>
+					{% for item in line %}
+					<td>
+						{{item}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</body>
+
 </html>

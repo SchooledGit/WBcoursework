@@ -1,0 +1,9 @@
+/* https://stackoverflow.com/questions/5235142/how-to-disable-resizable-property-of-textarea */
+#comment, #name {
+  resize: none;
+}
+
+#comment {
+  height: 40em;
+  width:100%;
+}

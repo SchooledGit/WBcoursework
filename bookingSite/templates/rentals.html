@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html:charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../static/css/defaults.css">
+	<title>Rental Request</title>
+</head>
+
+<body>
+	<header id="navbar">
+		<h4 class="title">Rental Dates</h4>
+		<div class="links">
+			<a href="/">Home</a>
+			<a href="/attrafctions">Local Attractions</a>
+			<a href="/reviews">Reviews</a>
+		</div>
+	</header>
+
+	<a href="/bookings">Book the Property</a>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Confirmed</th>
+			</tr>
+		</thead>
+		{% for line in inList %}
+		<tr>
+			{% for item in line%}
+			<td>
+				{{item}}
+			</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+
+</html>

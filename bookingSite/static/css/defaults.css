@@ -1,0 +1,87 @@
+/* style buttons, also makes them feel better */
+button, input[type=submit] {
+  background-color: deepskyblue;
+  color: white;
+  padding: 1em 1em;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=text], input[type=password] {
+  /* CSS to style the inputs on the login popup*/
+  width: 100%;
+  padding: 0;
+  display: inline-block;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#navbar {
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: deepskyblue;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left:0;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  cursor: default;
+}
+
+/* padded from the sides */
+.links, .title {
+  margin: 1.5em;
+}
+
+body {
+  margin-top: 3em;
+  font-family: Arial, Verdana, sans-serif;
+}
+
+.flexy {
+  /* centers objects using flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  /* border: solid 1px deepskyblue; */
+  width: 100%;
+}
+
+/* https://www.w3schools.com/css/tryit.asp?filename=trycss_table_fancy */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+table td, table th {
+  border: 1px solid black;
+  padding: 0.25em;
+}
+
+table th {
+  background-color: deepskyblue;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
