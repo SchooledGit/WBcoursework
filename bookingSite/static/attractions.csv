@@ -1,8 +1,8 @@
-lights_wide.jpg,1,,Caption 1
-mountains_wide.jpg,2,,Caption 2
-snow_wide.jpg,3,,Caption 3
-castle.jpg,4,,Castle
-dragon-hall.jpg,5,,Great Hall
-norwich-cathedral.jpg,6,,Cathedral
-norwich-city-center.jpg,7,,City Centre
-norwich-tombland.jpg,8,,Tombland
+lights_wide.jpg,1,d1.txt,Caption 1
+mountains_wide.jpg,2,d2.txt,Caption 2
+snow_wide.jpg,3,d3.txt,Caption 3
+castle.jpg,4,d4.txt,Castle
+dragon-hall.jpg,5,d5.txt,Great Hall
+norwich-cathedral.jpg,6,d6.txt,Cathedral
+norwich-city-center.jpg,7,d7.txt,City Centre
+norwich-tombland.jpg,8,d8.txt,Tombland
