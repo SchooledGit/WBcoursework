@@ -1,11 +1,11 @@
 class Slide:
     source = ''
     index = 0
-    reference = ''
+    text = ''
     caption = ''
     
-    def __init__(self, src, indx, ref, cptn):
+    def __init__(self, src, indx, txt, cptn):
         self.source = src
         self.index = indx
-        self.reference = ref
+        self.text = txt
         self.caption = cptn

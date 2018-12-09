@@ -10,11 +10,11 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 @app.route('/')
 def home():
-    slides = loadSlides('home')
+    slides = loadSlides('home', False)
     return render_template('home.html',slides=slides)
 @app.route('/attractions')
 def attractions():
-    slides = loadSlides('attractions')
+    slides = loadSlides('attractions', True)
     return render_template('attractions.html',slides=slides)
 @app.route('/reviews')
 def reviews():
@@ -41,6 +41,14 @@ def readWithoutColumnsFile(aFile, inclColumns):
         for row in reader:
             inList.append(list(row[i] for i in inclColumns))
     return inList
+
+#https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string
+def listToPlain(aList):
+    output = ""
+    for line in aList:
+        output += ''.join(line)
+        output += "\n"
+    return output
     
 def writeFile(aList, aFile):
     with open(aFile, 'w', newline="") as outFile:
@@ -122,12 +130,17 @@ def editAdmin():
     return render_template('admin.html', inList = inList)
 
 # https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
-def loadSlides(pageName):
+def loadSlides(pageName, isattractions):
     # https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
     sList = []
     tempList = readFile('static\\' + pageName + '.csv')
     for i in tempList:
-        sList.append(Slide('../static/images/' + pageName + '/' + i[0], i[1], i[2], i[3]))
+        imgPath = '../static/images/' + pageName + '/' + i[0]
+        textPath = 'static\\text\\' + i[2]
+        txt = ''
+        if i[2] != "":
+            txt = listToPlain(readFile(textPath))
+        sList.append(Slide(imgPath, i[1], txt, i[3]))
     return sList
 
 if __name__ == '__main__':
