@@ -7,6 +7,7 @@ function showSlides(n) {
   var slides = document.getElementsByClassName("slide");
   var dots = document.getElementsByClassName("dot");
   var captions = document.getElementsByClassName("caption");
+  var descriptions = document.getElementsByClassName("description");
   if (n > slides.length) {
     currentIndex = 1;
   }
@@ -18,11 +19,13 @@ function showSlides(n) {
     slides[i].style.display = "none";
     dots[i].className = dots[i].className.replace(" active", "");
     captions[i].style.display = "none";
+    descriptions[i].style.display = "none";
   }
   //reveal current elements
   captions[currentIndex - 1].style.display = "block";
   slides[currentIndex - 1].style.display = "block";
   dots[currentIndex - 1].className += " active";
+  descriptions[currentIndex - 1].style.display = "block";
 }
 
 function plusSlides(n) {
