@@ -25,9 +25,7 @@
 
 		{% for s in slides %}
 		<div class="slide">
-			<a href={{s.reference}}>
 				<img src={{s.source}} alt={{s.source}}>
-			</a>
 		</div>
 		{% endfor %}
 
@@ -47,6 +45,13 @@
 		<button class="dot" onclick="currentSlide({{s.index}})">{{s.index}}</button>
 		{% endfor %}
 	</div>
+    
+    <!-- descriptions -->
+    <div class="container">
+        {% for s in slides %}
+        <div class="description">{{s.text}}</div>
+        {% endfor %}
+    </div>
 
 	<script src="../static/js/slideshow.js"></script>
 
